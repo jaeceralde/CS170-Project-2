@@ -46,3 +46,33 @@ def forward_selection(num_features):
                 queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features, accuracy = accuracy))
 
     return best_subset, best_accuracy 
+
+# same thing as the forward function but backwards 
+def backward_selection(num_features):
+    queue = [] 
+    best_subset = []
+    best_accuracy = 0
+
+    # initialize the queue with all features selected
+    queue.append(node(featuresSubset={i: True for i in range(num_features)}))
+
+    while queue:
+        curr_node = queue.pop()
+
+        # calculate the accuracy (placeholder for now b/c i think its supposed to calculate it based on the current feature subset tho)
+        accuracy = getRand() * 100
+
+        # update the best accuracy and best subset if the current subset performs better
+        if accuracy > best_accuracy:
+            best_accuracy = accuracy 
+            best_subset = curr_node.featuresSubset
+
+        # iterate over each feature and remove it from the subset
+        for feature in curr_node.featuresSubset:
+            new_features = curr_node.featuresSubset.copy()
+            del new_features[feature]
+
+            # add the new subset to the queue
+            queue.append(node(featuresSubset=new_features))
+
+    return best_subset, best_accuracy
