@@ -32,7 +32,7 @@ def forward_selection(num_features):
             if feature not in curr_node.featuresSubset: # checks if the feature has been selected in the current subset
                 new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
                 new_features[feature] = True # add the current feature to the new subset of features
-                accuracy = getRand() * 100 # generate a random accuracy score (for now i think??)
+                accuracy = getRand() * 100 # generate a random accuracy score (for now)
 
                 # update the best accuracy and best subset if the current subset performs better
                 if accuracy > best_accuracy:
