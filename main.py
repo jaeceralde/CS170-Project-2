@@ -22,13 +22,13 @@ if (numAlgo == 1):
     best_subset, best_acc = forward_selection(numFeatures)
     
     sorted_keys = sorted(best_subset.keys())
-    best_subset_first = ', '.join(map(str, sorted_keys))
+    best_subset_first = ','.join(map(str, sorted_keys))
 
-    print('\nThe best feature subset is ' + str(best_subset_first) + ' which has an accuracy of {:.2f}%'.format(best_acc))
+    print(f'\nThe best feature subset is {{{best_subset_first}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
 elif (numAlgo == 2):
     best_subset, best_acc = backward_selection(numFeatures)
     
     sorted_keys = sorted(best_subset.keys())
-    best_subset_first = ', '.join(map(str, sorted_keys))
+    best_subset_first = ','.join(map(str, sorted_keys))
     
-    print('\nThe best feature subset is ' + str(best_subset_first) + ' which has an accuracy of {:.2f}%'.format(best_acc))
+    print(f'\nThe best feature subset is {{{best_subset_first}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))

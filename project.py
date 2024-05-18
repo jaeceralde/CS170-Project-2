@@ -22,6 +22,8 @@ def forward_selection(num_features):
 
     # adding a node that represents the initial state (aka no features selected yet) to the queue
     queue.append(node(remainingFeatures = np.arange(num_features)))
+    
+    print('Beginning search.\n')
 
     # starting the bfs loop 
     while queue:
@@ -33,6 +35,11 @@ def forward_selection(num_features):
                 new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
                 new_features[feature] = True # add the current feature to the new subset of features
                 accuracy = getRand() * 100 # generate a random accuracy score (for now)
+                
+                sorted_keys = sorted(new_features.keys())
+                sorted_features = ','.join(map(str, sorted_keys))
+                
+                print(f'Feature set {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
                 # update the best accuracy and best subset if the current subset performs better
                 if accuracy > best_accuracy:
@@ -61,6 +68,11 @@ def backward_selection(num_features):
 
         # calculate the accuracy (placeholder for now b/c i think its supposed to calculate it based on the current feature subset tho)
         accuracy = getRand() * 100
+        
+        sorted_keys = sorted(curr_node.featuresSubset.keys())
+        sorted_features = ','.join(map(str, sorted_keys))
+        
+        print(f'Feature set {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
         # update the best accuracy and best subset if the current subset performs better
         if accuracy > best_accuracy:
