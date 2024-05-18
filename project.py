@@ -19,11 +19,13 @@ def forward_selection(num_features):
     queue = [] 
     best_subset = []
     best_accuracy = 0
+    visited = set()
 
     # adding a node that represents the initial state (aka no features selected yet) to the queue
     queue.append(node(remainingFeatures = np.arange(num_features)))
     
     print('Beginning search.\n')
+    cur_size = 1
 
     # starting the bfs loop 
     while queue:
@@ -31,15 +33,29 @@ def forward_selection(num_features):
 
         # iterate over the remaining features of the current node
         for feature in curr_node.remainingFeatures:
-            if feature not in curr_node.featuresSubset: # checks if the feature has been selected in the current subset
+            if feature not in visited: # checks if the feature has been selected in the current subset
                 new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
                 new_features[feature] = True # add the current feature to the new subset of features
+
+                # checking if it was visited
+                features_tuple = tuple(sorted(new_features.keys()))
+                if features_tuple in visited:
+                    continue
+                visited.add(features_tuple)
+
+                # checking if the features have changed size so we can show whats the best accuracy so far
+                if len(features_tuple) > cur_size:
+                    best_subset_sofar = sorted(best_subset.keys())
+                    combined_best_subset = ','.join(map(str, best_subset_sofar))
+                    print(f'\nFeature set {{{combined_best_subset}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
+                    cur_size = len(features_tuple)
+
                 accuracy = getRand() * 100 # generate a random accuracy score (for now)
                 
                 sorted_keys = sorted(new_features.keys())
                 sorted_features = ','.join(map(str, sorted_keys))
                 
-                print(f'Feature set {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+                print(f'\tFeature set {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
                 # update the best accuracy and best subset if the current subset performs better
                 if accuracy > best_accuracy:
@@ -51,6 +67,10 @@ def forward_selection(num_features):
 
                 # add a new node representing the updated subset of features to the queue
                 queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features, accuracy = accuracy))
+                
+                # if found then end
+                if len(features_tuple) == num_features:
+                    return best_subset, best_accuracy
 
     return best_subset, best_accuracy 
 
