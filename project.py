@@ -84,16 +84,19 @@ def backward_selection(num_features):
     best_accuracy = 0
     cur_size = num_features
     visited = set()
-    last_acc = 0
 
     # initialize the queue with all features selected
     queue.append(node(featuresSubset=[i for i in range(num_features)]))
+    print('Beginning search.\n')
 
     while queue:
         curr_node = queue.popleft()
         
         if len(curr_node.featuresSubset) == 0:
-            if last_acc < best_accuracy:
+            rand = getRand() * 100
+            print('\nUsing no features and \"random\" evaluation, I get an accuracy of {:.2f}%'.format(rand))
+            
+            if rand < best_accuracy:
                 print('\n(Warning, accuracy has decreased!)')
             break
 
