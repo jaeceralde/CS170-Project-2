@@ -1,15 +1,23 @@
 import random
 import numpy as np
 
+# custom print for the lists so they are sorted and easier to read
+def custom_print_list(lst):
+    sorted_keys = sorted(lst)
+    return ','.join(map(str, sorted_keys))
+
+
 def getRand():
     return random.random()
+
 
 class node:
     # constructor for the node class
     def __init__(self, accuracy = 0, remainingFeatures = None, featuresSubset = None):
         self.accuracy = accuracy 
         self.remainingFeatures = remainingFeatures if remainingFeatures is not None else np.array(0) 
-        self.featuresSubset = featuresSubset if featuresSubset is not None else {}
+        self.featuresSubset = featuresSubset if featuresSubset is not None else []
+
 
 def forward_selection(num_features):
     queue = [] 
@@ -31,27 +39,23 @@ def forward_selection(num_features):
         for feature in curr_node.remainingFeatures:
             if feature not in visited: # checks if the feature has been selected in the current subset
                 new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
-                new_features[feature] = True # add the current feature to the new subset of features
+                new_features.append(feature) # add the current feature to the new subset of features
 
                 # checking if it was visited
-                features_tuple = tuple(sorted(new_features.keys()))
+                features_tuple = tuple(new_features)
                 if features_tuple in visited:
                     continue
                 visited.add(features_tuple)
 
                 # checking if the features have changed size so we can show whats the best accuracy so far
                 if len(features_tuple) > cur_size:
-                    best_subset_sofar = sorted(best_subset.keys())
-                    combined_best_subset = ','.join(map(str, best_subset_sofar))
-                    print(f'\nFeature set {{{combined_best_subset}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
+                    print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
                     cur_size = len(features_tuple)
 
                 accuracy = getRand() * 100 # generate a random accuracy score (for now)
-                
-                sorted_keys = sorted(new_features.keys())
-                sorted_features = ','.join(map(str, sorted_keys))
-                
-                print(f'\tUsing feature(s) {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+
+                print(f'\tFeature set {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+
 
                 # update the best accuracy and best subset if the current subset performs better
                 if accuracy > best_accuracy:
@@ -70,6 +74,7 @@ def forward_selection(num_features):
 
     return best_subset, best_accuracy 
 
+
 # same thing as the forward function but backwards 
 def backward_selection(num_features):
     queue = [] 
@@ -77,23 +82,23 @@ def backward_selection(num_features):
     best_accuracy = 0
 
     # initialize the queue with all features selected
-    queue.append(node(featuresSubset={i: True for i in range(num_features)}))
+    queue.append(node(featuresSubset=[i for i in range(num_features)]))
 
     while queue:
         curr_node = queue.pop()
 
-        # calculate the accuracy (placeholder for now b/c i think its supposed to calculate it based on the current feature subset tho)
+        # calculate the accuracy (placeholder for now)
         accuracy = getRand() * 100
         
-        sorted_keys = sorted(curr_node.featuresSubset.keys())
-        sorted_features = ','.join(map(str, sorted_keys))
-        
-        print(f'Feature set {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+        print(f'Feature set {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
         # update the best accuracy and best subset if the current subset performs better
         if accuracy > best_accuracy:
             best_accuracy = accuracy 
             best_subset = curr_node.featuresSubset
+            
+        if len(curr_node.featuresSubset) == 1:
+            break
 
         # iterate over each feature and remove it from the subset
         for feature in curr_node.featuresSubset:
