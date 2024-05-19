@@ -5,11 +5,7 @@ def getRand():
     return random.random()
 
 class node:
-    #accuracy = 0 # keeps track of accuracy score
-    #remainingFeatures = np.array(0) # keeps track of unvisited states(?)
-    #featuresSubset = {} # keeps track of visited states(?)
-
-    # below i created a constructor for the node class
+    # constructor for the node class
     def __init__(self, accuracy = 0, remainingFeatures = None, featuresSubset = None):
         self.accuracy = accuracy 
         self.remainingFeatures = remainingFeatures if remainingFeatures is not None else np.array(0) 
@@ -55,7 +51,7 @@ def forward_selection(num_features):
                 sorted_keys = sorted(new_features.keys())
                 sorted_features = ','.join(map(str, sorted_keys))
                 
-                print(f'\tFeature set {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+                print(f'\tUsing feature(s) {{{sorted_features}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
                 # update the best accuracy and best subset if the current subset performs better
                 if accuracy > best_accuracy:
