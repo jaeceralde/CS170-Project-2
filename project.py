@@ -62,9 +62,6 @@ def forward_selection(num_features):
                     best_accuracy = accuracy 
                     best_subset = new_features
                 
-                elif accuracy < best_accuracy and cur_size > 1:
-                    print('\t\t(Warning, accuracy has decreased!)')
-                
                 # generate the remaining features by excluding the current feature
                 remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
 
@@ -73,6 +70,8 @@ def forward_selection(num_features):
                 
                 # if found then end
                 if len(features_tuple) == num_features:
+                    if accuracy < best_accuracy:
+                        print('\n(Warning, accuracy has decreased!)')
                     return best_subset, best_accuracy
 
     return best_subset, best_accuracy 
@@ -105,10 +104,9 @@ def backward_selection(num_features):
             best_accuracy = accuracy 
             best_subset = curr_node.featuresSubset
         
-        elif accuracy < best_accuracy and cur_size < num_features:
-            print('\t\t(Warning, accuracy has decreased!)')
-        
         if len(curr_node.featuresSubset) == 1:
+            if accuracy < best_accuracy:
+                print('\n(Warning, accuracy has decreased!)')
             break
 
         # iterate over each feature and remove it from the subset
