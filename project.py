@@ -90,6 +90,11 @@ def backward_selection(num_features):
 
     while queue:
         curr_node = queue.popleft()
+        
+        if len(curr_node.featuresSubset) == 0:
+            if accuracy < best_accuracy:
+                print('\n(Warning, accuracy has decreased!)')
+            break
 
         # checking if it was visited
         features_tuple = tuple(curr_node.featuresSubset)
@@ -110,11 +115,6 @@ def backward_selection(num_features):
         if accuracy > best_accuracy:
             best_accuracy = accuracy 
             best_subset = curr_node.featuresSubset
-        
-        if len(curr_node.featuresSubset) == 1:
-            if accuracy < best_accuracy:
-                print('\n(Warning, accuracy has decreased!)')
-            break
 
         # iterate over each feature and remove it from the subset
         for feature in curr_node.featuresSubset:
