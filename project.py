@@ -84,6 +84,7 @@ def backward_selection(num_features):
     best_accuracy = 0
     cur_size = num_features
     visited = set()
+    last_acc = 0
 
     # initialize the queue with all features selected
     queue.append(node(featuresSubset=[i for i in range(num_features)]))
@@ -92,7 +93,7 @@ def backward_selection(num_features):
         curr_node = queue.popleft()
         
         if len(curr_node.featuresSubset) == 0:
-            if accuracy < best_accuracy:
+            if last_acc < best_accuracy:
                 print('\n(Warning, accuracy has decreased!)')
             break
 
@@ -115,6 +116,8 @@ def backward_selection(num_features):
         if accuracy > best_accuracy:
             best_accuracy = accuracy 
             best_subset = curr_node.featuresSubset
+            
+        last_acc = accuracy # holder for now to see if accuracy is decreasing
 
         # iterate over each feature and remove it from the subset
         for feature in curr_node.featuresSubset:
