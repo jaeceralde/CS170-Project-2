@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from collections import deque
 
 # custom print for the lists so they are sorted and easier to read
 def custom_print_list(lst):
@@ -77,7 +78,7 @@ def forward_selection(num_features):
 
 # same thing as the forward function but backwards 
 def backward_selection(num_features):
-    queue = [] 
+    queue = deque()
     best_subset = []
     best_accuracy = 0
 
@@ -85,7 +86,7 @@ def backward_selection(num_features):
     queue.append(node(featuresSubset=[i for i in range(num_features)]))
 
     while queue:
-        curr_node = queue.pop()
+        curr_node = queue.popleft()
 
         # calculate the accuracy (placeholder for now)
         accuracy = getRand() * 100
@@ -102,8 +103,7 @@ def backward_selection(num_features):
 
         # iterate over each feature and remove it from the subset
         for feature in curr_node.featuresSubset:
-            new_features = curr_node.featuresSubset.copy()
-            del new_features[feature]
+            new_features = [f for f in curr_node.featuresSubset if f != feature]
 
             # add the new subset to the queue
             queue.append(node(featuresSubset=new_features))
