@@ -83,12 +83,19 @@ def backward_selection(num_features):
     best_subset = []
     best_accuracy = 0
     cur_size = num_features
+    visited = set()
 
     # initialize the queue with all features selected
     queue.append(node(featuresSubset=[i for i in range(num_features)]))
 
     while queue:
         curr_node = queue.popleft()
+
+        # checking if it was visited
+        features_tuple = tuple(curr_node.featuresSubset)
+        if features_tuple in visited:
+            continue
+        visited.add(features_tuple)
 
         # calculate the accuracy (placeholder for now)
         accuracy = getRand() * 100
