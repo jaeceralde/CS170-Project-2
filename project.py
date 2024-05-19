@@ -55,13 +55,15 @@ def forward_selection(num_features):
 
                 accuracy = getRand() * 100 # generate a random accuracy score (for now)
 
-                print(f'\tFeature set {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
-
+                print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
                 # update the best accuracy and best subset if the current subset performs better
                 if accuracy > best_accuracy:
                     best_accuracy = accuracy 
                     best_subset = new_features
+                
+                elif accuracy < best_accuracy and cur_size > 1:
+                    print('\t\t(Warning, accuracy has decreased!)')
                 
                 # generate the remaining features by excluding the current feature
                 remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
@@ -81,6 +83,7 @@ def backward_selection(num_features):
     queue = deque()
     best_subset = []
     best_accuracy = 0
+    cur_size = num_features
 
     # initialize the queue with all features selected
     queue.append(node(featuresSubset=[i for i in range(num_features)]))
@@ -91,13 +94,20 @@ def backward_selection(num_features):
         # calculate the accuracy (placeholder for now)
         accuracy = getRand() * 100
         
-        print(f'Feature set {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+        if cur_size > len(curr_node.featuresSubset):
+            print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
+            cur_size = len(curr_node.featuresSubset)
+
+        print(f'\tUsing feature(s) {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
         # update the best accuracy and best subset if the current subset performs better
         if accuracy > best_accuracy:
             best_accuracy = accuracy 
             best_subset = curr_node.featuresSubset
-            
+        
+        elif accuracy < best_accuracy and cur_size < num_features:
+            print('\t\t(Warning, accuracy has decreased!)')
+        
         if len(curr_node.featuresSubset) == 1:
             break
 
@@ -106,6 +116,6 @@ def backward_selection(num_features):
             new_features = [f for f in curr_node.featuresSubset if f != feature]
 
             # add the new subset to the queue
-            queue.append(node(featuresSubset=new_features))
+            queue.append(node(featuresSubset = new_features))
 
     return best_subset, best_accuracy

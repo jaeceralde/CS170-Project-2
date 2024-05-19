@@ -21,10 +21,12 @@ if (numAlgo == 1):
     # forward selection function
     best_subset, best_acc = forward_selection(numFeatures)
     
+    print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
 
 elif (numAlgo == 2):
     # backward selection function
     best_subset, best_acc = backward_selection(numFeatures)
     
+    print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
