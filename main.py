@@ -15,11 +15,10 @@ print('2. Backward Selection\n')
 
 numAlgo = int(input())
 
-
-
 if (numAlgo == 1):
     # forward selection function
     print('\nUsing no features and \"random\" evaluation, I get an accuracy of ' + rand + '%\n')
+    
     best_subset, best_acc = forward_selection(numFeatures)
     
     print('\nFinished search!')
