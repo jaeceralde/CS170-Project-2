@@ -1,5 +1,5 @@
 import numpy as np
-
+import time
 
 class Classifier:
     def __init__(self):
@@ -30,6 +30,7 @@ class Validator:
         # go through all the data and run train and test
         # count how many are right then return correct_pred / total
         for i in range(total):
+            start_time = time.time()
             # remove the test instance from the original dataset
             train_data = np.delete(data, i, axis = 0)
             # select the ith instance from the original dataset to be used as the test instance 
@@ -41,8 +42,8 @@ class Validator:
             classifier.train(train_data, selected_features)
             # test the classifier
             predictor = classifier.test(test_instance)
-
-            print(f'The predictor says the test instance\'s label is:', predictor)  # for trace
+            end_time = time.time()
+            print(f'The predictor says the test instance\'s label is: {predictor} and it took {end_time - start_time:.6f} seconds to run')  # for trace
 
             # if the predictor is the actual label
             if predictor == test_instance[0]:
