@@ -1,5 +1,283 @@
+Using feature(s): [3, 5, 7]
+
 The test instance's actual label is: 2.0
 The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.015635 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        WRONG PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.015621 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        WRONG PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 1.0 — and it took 0.015715 seconds to run
+        WRONG PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.015616 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        WRONG PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        WRONG PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 2.0
+The predictor says the test instance's label is: 2.0 — and it took 0.015643 seconds to run
+        RIGHT PREDICTION
+
+The test instance's actual label is: 1.0
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
@@ -27,283 +305,7 @@ The predictor says the test instance's label is: 2.0 — and it took 0.000000 se
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.015645 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 1.0 — and it took 0.015607 seconds to run
-        WRONG PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.001881 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.014015 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        WRONG PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.015639 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.002189 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.002111 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.002077 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.001023 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.002526 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.015671 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        WRONG PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        WRONG PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.015627 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.015704 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
-        WRONG PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
-        RIGHT PREDICTION
-
-The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.015573 seconds to run
+The predictor says the test instance's label is: 2.0 — and it took 0.015555 seconds to run
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
@@ -323,7 +325,7 @@ The predictor says the test instance's label is: 2.0 — and it took 0.000000 se
         RIGHT PREDICTION
 
 The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.015714 seconds to run
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
@@ -335,7 +337,7 @@ The predictor says the test instance's label is: 2.0 — and it took 0.000000 se
         RIGHT PREDICTION
 
 The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+The predictor says the test instance's label is: 2.0 — and it took 0.015681 seconds to run
         WRONG PREDICTION
 
 The test instance's actual label is: 1.0
@@ -367,7 +369,7 @@ The predictor says the test instance's label is: 2.0 — and it took 0.000000 se
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+The predictor says the test instance's label is: 2.0 — and it took 0.015600 seconds to run
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
@@ -375,7 +377,7 @@ The predictor says the test instance's label is: 2.0 — and it took 0.000000 se
         RIGHT PREDICTION
 
 The test instance's actual label is: 1.0
-The predictor says the test instance's label is: 1.0 — and it took 0.015623 seconds to run
+The predictor says the test instance's label is: 1.0 — and it took 0.000000 seconds to run
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
@@ -395,7 +397,8 @@ The predictor says the test instance's label is: 2.0 — and it took 0.000000 se
         RIGHT PREDICTION
 
 The test instance's actual label is: 2.0
-The predictor says the test instance's label is: 2.0 — and it took 0.000000 seconds to run
+The predictor says the test instance's label is: 2.0 — and it took 0.015652 seconds to run
         RIGHT PREDICTION
 
 Accuracy on small dataset: 0.89
+
