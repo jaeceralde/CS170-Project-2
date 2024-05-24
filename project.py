@@ -43,7 +43,7 @@ class Validator:
             # test the classifier
             predictor = classifier.test(test_instance)
             end_time = time.time()
-            print(f'The predictor says the test instance\'s label is: {predictor} and it took {end_time - start_time:.6f} seconds to run')  # for trace
+            print(f'The predictor says the test instance\'s label is: {predictor} — and it took {end_time - start_time:.6f} seconds to run')  # for trace
 
             # if the predictor is the actual label
             if predictor == test_instance[0]:

@@ -13,7 +13,7 @@ validator = Validator()
 # calculated the accuracy of the nearest neighbor classifier on the small dataset
 small_features = [3, 5, 7]
 small_acc = validator.leave_one_out_validation(classifier, small_data, small_features)
-print(f'Accuracy on small dataset: {small_acc:.2f}')
+print(f'Accuracy on small dataset: {small_acc:.2f}\n')  # newline for trace format
 
 # calculated the accuracy of the nearest neighbor classifier on the large dataset
 large_features = [1, 15, 27]
