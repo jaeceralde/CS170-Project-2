@@ -1,33 +1,15 @@
+import random
 import numpy as np
 from collections import deque
-
-def load(filename):
-    data = np.loadtxt(filename)
-
-    # seperate labels and features 
-    labels = data[:, 0]
-    features = data[:, 1:]
-
-    # normalize the features 
-    features = (features - np.mean(features, axis = 0) / np.std(features, axis = 0))
-
-    # combine the labels and normalized features 
-    data = np.column_stack((labels, features))
-    
-    return data
-
-
-
-#def default(commonclass, setsize):    # FIXME
-#    return size(commonclass) / setsize
-
-
 
 # custom print for the lists so they are sorted and easier to read
 def custom_print_list(lst):
     sorted_keys = sorted(lst)
     return ','.join(map(str, sorted_keys))
 
+
+def getRand():
+    return random.random()
 
 
 class node:
@@ -36,63 +18,6 @@ class node:
         self.accuracy = accuracy 
         self.remainingFeatures = remainingFeatures if remainingFeatures is not None else np.array(0) 
         self.featuresSubset = featuresSubset if featuresSubset is not None else []
-
-
-
-class Classifier:
-    def __init__(self):
-        self.train_data = None  # list of the training data
-        self.selected_features = None   # the features that are inputted
-        
-    def train(self, data, selected_features):
-        self.train_data = data
-        self.selected_features = selected_features
-        
-    def euclidean_distance(self, p1, p2):
-        return np.sqrt(np.sum((p1[self.selected_features] - p2[self.selected_features]) ** 2))  # calculate euclidean distance 
-    
-    # here we go through train_data and find which is the closest point
-    def test(self, instance):
-        # find the nearest neighbor 
-        # compute the distance between a given test instance and all training instances in the dataset
-        distance = [self.euclidean_distance(instance, train_instance) for train_instance in self.train_data]
-        nn_index = np.argmin(distance)  # get the index from the smallest distance
-        return self.train_data[nn_index, 0] # return the class label of the nearest neighbor
-
-
-
-class Validator:
-    def leave_one_out_validation(self, classifier, data, selected_features):
-        correct_pred = 0
-        total = len(data)
-        
-        # go through all the data and run train and test
-        # count how many are right then return correct_pred / total
-        for i in range(total):
-            start_time = time.time()
-            # remove the test instance from the original dataset
-            train_data = np.delete(data, i, axis = 0)
-            # select the ith instance from the original dataset to be used as the test instance 
-            test_instance = data[i]
-
-            print(f'The test instance\'s actual label is:', test_instance[0])   # for trace
-
-            # train the classifier
-            classifier.train(train_data, selected_features)
-            # test the classifier
-            predictor = classifier.test(test_instance)
-            end_time = time.time()
-            print(f'The predictor says the test instance\'s label is: {predictor} — and it took {end_time - start_time:.6f} seconds to run')  # for trace
-
-            # if the predictor is the actual label
-            if predictor == test_instance[0]:
-                correct_pred += 1
-                print('\tRIGHT PREDICTION\n')   # for trace
-            else:
-                print('\tWRONG PREDICTION\n')   # for trace
-
-        return correct_pred / total
-    
 
 
 def forward_selection(num_features):
@@ -128,8 +53,7 @@ def forward_selection(num_features):
                     print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
                     cur_size = len(features_tuple)
 
-                # FIXME
-                # accuracy = getRand() * 100 # generate a random accuracy score (for now)
+                accuracy = getRand() * 100 # generate a random accuracy score (for now)
 
                 print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
@@ -150,8 +74,7 @@ def forward_selection(num_features):
                         print('\n(Warning, accuracy has decreased!)')
                     return best_subset, best_accuracy
 
-    return best_subset, best_accuracy
-
+    return best_subset, best_accuracy 
 
 
 # same thing as the forward function but backwards 
@@ -171,9 +94,8 @@ def backward_selection(num_features):
         curr_node = queue.popleft()
         
         if len(curr_node.featuresSubset) == 0:
-            # FIXME
-            # rand = getRand() * 100
-            # print('\nUsing no features and \"random\" evaluation, I get an accuracy of {:.2f}%'.format(rand))
+            rand = getRand() * 100
+            print('\nUsing no features and \"random\" evaluation, I get an accuracy of {:.2f}%'.format(rand))
             
             if rand < best_accuracy:
                 print('\n(Warning, accuracy has decreased!)')
@@ -185,9 +107,8 @@ def backward_selection(num_features):
             continue
         visited.add(features_tuple)
 
-        # FIXME
         # calculate the accuracy (placeholder for now)
-        # accuracy = getRand() * 100
+        accuracy = getRand() * 100
         
         if cur_size > len(curr_node.featuresSubset):
             print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
