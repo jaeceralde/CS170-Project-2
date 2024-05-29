@@ -1,5 +1,6 @@
 import numpy as np
 from collections import deque
+from collections import Counter
 
 def load(filename):
     data = np.loadtxt(filename)
@@ -18,8 +19,15 @@ def load(filename):
 
 
 
+# FIXME
+# def most_common(list):
+    # dataS = Counter(list)
+    # return dataS.most_common(1)[0][0], dataS.most_common(1)
+
+
+
 #def default(commonclass, setsize):    # FIXME
-#    return size(commonclass) / setsize
+#    return commonclass / setsize
 
 
 

@@ -18,9 +18,12 @@ numAlgo = int(input())
 classifier = Classifier()
 validator = Validator()
 
+# FIXME
+# mostCommonClass = most_common(dataset.labels)
+
 if (numAlgo == 1):  # forward selection function
     # FIXME
-    # print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + default(x,y) + '.\n')
+    # print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + default(dataS.most_common(1), size(dataset.features)) + '.\n')
     
     best_subset, best_acc = forward_selection(numFeatures)
 
