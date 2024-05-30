@@ -76,47 +76,39 @@ class Validator:
         # go through all the data and run train and test
         # count how many are right then return correct_pred / total
         for i in range(total):
-            # start_time = time.time()
             # remove the test instance from the original dataset
             train_data = np.delete(data, i, axis = 0)
             # select the ith instance from the original dataset to be used as the test instance 
             test_instance = data[i]
 
-            print(f'The test instance\'s actual label is:', test_instance[0])   # for trace
-
             # train the classifier
             classifier.train(train_data, selected_features)
             # test the classifier
             predictor = classifier.test(test_instance)
-            # end_time = time.time()
-            # print(f'The predictor says the test instance\'s label is: {predictor} — and it took {end_time - start_time:.6f} seconds to run')  # for trace
-
+            
             # if the predictor is the actual label
             if predictor == test_instance[0]:
                 correct_pred += 1
-                print('\tRIGHT PREDICTION\n')   # for trace
-            else:
-                print('\tWRONG PREDICTION\n')   # for trace
 
         return correct_pred / total
     
 
 
-def forward_selection(num_features):
+def forward_selection(features):
     queue = [] 
     best_subset = []
     best_accuracy = 0
     visited = set()
 
     # adding a node that represents the initial state (aka no features selected yet) to the queue
-    queue.append(node(remainingFeatures = np.arange(num_features)))
+    queue.append(node(remainingFeatures = np.arange(features)))
     
     print('Beginning search.\n')
     cur_size = 1
 
     # starting the bfs loop 
     while queue:
-        curr_node = queue.pop() #removing and retrieving the first node from the queue
+        curr_node = queue.pop() # removing and retrieving the first node from the queue
 
         # iterate over the remaining features of the current node
         for feature in curr_node.remainingFeatures:
@@ -152,7 +144,7 @@ def forward_selection(num_features):
                 # queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features, accuracy = accuracy))
                 
                 # if found then end
-                # if len(features_tuple) == num_features:
+                # if len(features_tuple) == features:
                     # if accuracy < best_accuracy:
                         # print('\n(Warning, accuracy has decreased!)')
                     # return best_subset, best_accuracy
@@ -162,15 +154,15 @@ def forward_selection(num_features):
 
 
 # same thing as the forward function but backwards 
-def backward_selection(num_features):
+def backward_selection(features, defaultrate):
     queue = deque()
     best_subset = []
     best_accuracy = 0
-    cur_size = num_features
+    cur_size = features
     visited = set()
 
     # initialize the queue with all features selected
-    queue.append(node(featuresSubset=[i for i in range(num_features)]))
+    queue.append(node(featuresSubset=[i for i in range(features)]))
     
     print('\nBeginning search.\n')
 
@@ -178,11 +170,9 @@ def backward_selection(num_features):
         curr_node = queue.popleft()
         
         # if len(curr_node.featuresSubset) == 0:
-            # FIXME
-            # rand = getRand() * 100
-            # print('\nUsing no features and \"random\" evaluation, I get an accuracy of {:.2f}%'.format(rand))
+            # print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + str(defaultrate) + '.\n')
             
-            #if rand < best_accuracy:
+            # if rand < best_accuracy:
                 # print('\n(Warning, accuracy has decreased!)')
             # break
 
