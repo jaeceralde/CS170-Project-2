@@ -19,15 +19,14 @@ def load(filename):
 
 
 
-# FIXME
-# def most_common(list):
-    # dataS = Counter(list)
-    # return dataS.most_common(1)[0][0], dataS.most_common(1)
+def most_common(list):
+    commonclass = Counter(list)
+    return commonclass.most_common(1)[0]  # returns the most common class & its instance count
 
 
 
-#def default(commonclass, setsize):    # FIXME
-#    return commonclass / setsize
+def default(commonclass, setsize):
+    return commonclass / setsize
 
 
 
@@ -77,7 +76,7 @@ class Validator:
         # go through all the data and run train and test
         # count how many are right then return correct_pred / total
         for i in range(total):
-            start_time = time.time()
+            # start_time = time.time()
             # remove the test instance from the original dataset
             train_data = np.delete(data, i, axis = 0)
             # select the ith instance from the original dataset to be used as the test instance 
@@ -89,8 +88,8 @@ class Validator:
             classifier.train(train_data, selected_features)
             # test the classifier
             predictor = classifier.test(test_instance)
-            end_time = time.time()
-            print(f'The predictor says the test instance\'s label is: {predictor} — and it took {end_time - start_time:.6f} seconds to run')  # for trace
+            # end_time = time.time()
+            # print(f'The predictor says the test instance\'s label is: {predictor} — and it took {end_time - start_time:.6f} seconds to run')  # for trace
 
             # if the predictor is the actual label
             if predictor == test_instance[0]:
@@ -139,24 +138,24 @@ def forward_selection(num_features):
                 # FIXME
                 # accuracy = getRand() * 100 # generate a random accuracy score (for now)
 
-                print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+                # print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
                 # update the best accuracy and best subset if the current subset performs better
-                if accuracy > best_accuracy:
-                    best_accuracy = accuracy 
-                    best_subset = new_features
+                # if accuracy > best_accuracy:
+                    # best_accuracy = accuracy 
+                    # best_subset = new_features
                 
                 # generate the remaining features by excluding the current feature
                 remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
 
                 # add a new node representing the updated subset of features to the queue
-                queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features, accuracy = accuracy))
+                # queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features, accuracy = accuracy))
                 
                 # if found then end
-                if len(features_tuple) == num_features:
-                    if accuracy < best_accuracy:
-                        print('\n(Warning, accuracy has decreased!)')
-                    return best_subset, best_accuracy
+                # if len(features_tuple) == num_features:
+                    # if accuracy < best_accuracy:
+                        # print('\n(Warning, accuracy has decreased!)')
+                    # return best_subset, best_accuracy
 
     return best_subset, best_accuracy
 
@@ -178,14 +177,14 @@ def backward_selection(num_features):
     while queue:
         curr_node = queue.popleft()
         
-        if len(curr_node.featuresSubset) == 0:
+        # if len(curr_node.featuresSubset) == 0:
             # FIXME
             # rand = getRand() * 100
             # print('\nUsing no features and \"random\" evaluation, I get an accuracy of {:.2f}%'.format(rand))
             
-            if rand < best_accuracy:
-                print('\n(Warning, accuracy has decreased!)')
-            break
+            #if rand < best_accuracy:
+                # print('\n(Warning, accuracy has decreased!)')
+            # break
 
         # checking if it was visited
         features_tuple = tuple(curr_node.featuresSubset)
@@ -201,12 +200,12 @@ def backward_selection(num_features):
             print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
             cur_size = len(curr_node.featuresSubset)
 
-        print(f'\tUsing feature(s) {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+        # print(f'\tUsing feature(s) {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
         # update the best accuracy and best subset if the current subset performs better
-        if accuracy > best_accuracy:
-            best_accuracy = accuracy 
-            best_subset = curr_node.featuresSubset
+        # if accuracy > best_accuracy:
+            # best_accuracy = accuracy 
+            # best_subset = curr_node.featuresSubset
 
         # iterate over each feature and remove it from the subset
         for feature in curr_node.featuresSubset:
