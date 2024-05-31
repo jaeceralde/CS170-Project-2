@@ -32,13 +32,13 @@ defaultrate = default(mostCommonClass[1], numInstances)
 if (numAlgo == 1):  # forward selection function
     print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + str(defaultrate) + '.\n')
     
-    best_subset, best_acc = forward_selection(features)
+    best_subset, best_acc = forward_selection(numFeatures, dataset)
 
     print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
 
 elif (numAlgo == 2):    # backward selection function
-    # best_subset, best_acc = backward_selection(features, defaultrate)
+    best_subset, best_acc = backward_selection(numFeatures, dataset, defaultrate)
     
     print('\nFinished search!')
-    # print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
+    print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))

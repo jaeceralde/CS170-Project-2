@@ -94,14 +94,17 @@ class Validator:
     
 
 
-def forward_selection(features):
+def forward_selection(num_features, data):
     queue = [] 
     best_subset = []
     best_accuracy = 0
     visited = set()
+    
+    validator = Validator()
+    classifier = Classifier()
 
     # adding a node that represents the initial state (aka no features selected yet) to the queue
-    queue.append(node(remainingFeatures = np.arange(features)))
+    queue.append(node(remainingFeatures = np.arange(num_features)))
     
     print('Beginning search.\n')
     cur_size = 1
@@ -127,51 +130,61 @@ def forward_selection(features):
                     print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
                     cur_size = len(features_tuple)
 
-                # FIXME
+                # evaluate accuracy using leave-one-out cross-validation
+                accuracy = validator.leave_one_out_validation(classifier, data, new_features) * 100
+                print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+
+                # update the best accuracy and best subset if the current subset performs better
+                if accuracy > best_accuracy:
+                    best_accuracy = accuracy 
+                    best_subset = new_features
+
                 # accuracy = getRand() * 100 # generate a random accuracy score (for now)
 
                 # print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
-
-                # update the best accuracy and best subset if the current subset performs better
-                # if accuracy > best_accuracy:
-                    # best_accuracy = accuracy 
-                    # best_subset = new_features
                 
                 # generate the remaining features by excluding the current feature
                 remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
 
                 # add a new node representing the updated subset of features to the queue
-                # queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features, accuracy = accuracy))
+                queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features))
                 
                 # if found then end
-                # if len(features_tuple) == features:
-                    # if accuracy < best_accuracy:
-                        # print('\n(Warning, accuracy has decreased!)')
-                    # return best_subset, best_accuracy
+                if len(features_tuple) == num_features:
+                    if accuracy < best_accuracy:
+                        print('\n(Warning, accuracy has decreased!)')
+                    return best_subset, best_accuracy
 
     return best_subset, best_accuracy
 
 
 
 # same thing as the forward function but backwards 
-def backward_selection(features, defaultrate):
+def backward_selection(num_features, data, defaultrate):
     queue = deque()
     best_subset = []
     best_accuracy = 0
-    cur_size = features
+    cur_size = num_features
     visited = set()
+    
+    validator = Validator()
+    classifier = Classifier()
 
     # initialize the queue with all features selected
-    queue.append(node(featuresSubset=[i for i in range(features)]))
+    queue.append(node(featuresSubset=[i for i in range(num_features)]))
     
     print('\nBeginning search.\n')
 
     while queue:
         curr_node = queue.popleft()
         
-        # if len(curr_node.featuresSubset) == 0:
-            # print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + str(defaultrate) + '.\n')
+        if len(curr_node.featuresSubset) == 0:
+            print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + str(defaultrate) + '.\n')
             
+            if defaultrate < best_accuracy:
+                print('\n(Warning, accuracy has decreased!)')
+            break
+
             # if rand < best_accuracy:
                 # print('\n(Warning, accuracy has decreased!)')
             # break
@@ -182,7 +195,9 @@ def backward_selection(features, defaultrate):
             continue
         visited.add(features_tuple)
 
-        # FIXME
+        # evaluate accuracy using leave-one-out cross-validation
+        accuracy = validator.leave_one_out_validation(classifier, data, curr_node.featuresSubset) * 100
+        
         # calculate the accuracy (placeholder for now)
         # accuracy = getRand() * 100
         
@@ -190,12 +205,12 @@ def backward_selection(features, defaultrate):
             print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
             cur_size = len(curr_node.featuresSubset)
 
-        # print(f'\tUsing feature(s) {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+        print(f'\tUsing feature(s) {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
         # update the best accuracy and best subset if the current subset performs better
-        # if accuracy > best_accuracy:
-            # best_accuracy = accuracy 
-            # best_subset = curr_node.featuresSubset
+        if accuracy > best_accuracy:
+            best_accuracy = accuracy 
+            best_subset = curr_node.featuresSubset
 
         # iterate over each feature and remove it from the subset
         for feature in curr_node.featuresSubset:
