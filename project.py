@@ -105,7 +105,7 @@ def forward_selection(num_features, data):
     classifier = Classifier()
 
     # adding a node that represents the initial state (aka no features selected yet) to the queue
-    queue.append(node(remainingFeatures = np.arange(num_features)))
+    queue.append(node(remainingFeatures = np.arange(1, num_features)))
     
     print('Beginning search.\n')
     cur_size = 1
@@ -168,7 +168,7 @@ def backward_selection(num_features, data, defaultrate):
     classifier = Classifier()
 
     # initialize the queue with all features selected
-    queue.append(node(featuresSubset=[i for i in range(num_features)]))
+    queue.append(node(featuresSubset=[i for i in range(1, num_features)]))
     
     print('\nBeginning search.\n')
 
