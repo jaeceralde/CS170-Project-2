@@ -2,6 +2,7 @@ import numpy as np
 from collections import deque
 from collections import Counter
 
+
 def load(filename):
     data = np.loadtxt(filename)
 
@@ -95,7 +96,7 @@ class Validator:
 
 
 def forward_selection(num_features, data):
-    queue = [] 
+    queue = deque()
     best_subset = []
     best_accuracy = 0
     visited = set()
@@ -111,49 +112,45 @@ def forward_selection(num_features, data):
 
     # starting the bfs loop 
     while queue:
-        curr_node = queue.pop() # removing and retrieving the first node from the queue
+        curr_node = queue.popleft() # removing and retrieving the first node from the queue
 
         # iterate over the remaining features of the current node
         for feature in curr_node.remainingFeatures:
-            if feature not in visited: # checks if the feature has been selected in the current subset
-                new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
-                new_features.append(feature) # add the current feature to the new subset of features
+            
+            new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
+            new_features.append(feature) # add the current feature to the new subset of features
 
-                # checking if it was visited
-                features_tuple = tuple(new_features)
-                if features_tuple in visited:
-                    continue
-                visited.add(features_tuple)
+            # checking if it was visited
+            features_tuple = tuple(sorted(new_features))
+            if features_tuple in visited:
+                continue
+            visited.add(features_tuple)
 
-                # checking if the features have changed size so we can show whats the best accuracy so far
-                if len(features_tuple) > cur_size:
-                    print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
-                    cur_size = len(features_tuple)
+            # checking if the features have changed size so we can show whats the best accuracy so far
+            if len(features_tuple) > cur_size:
+                print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
+                cur_size = len(features_tuple)
 
-                # evaluate accuracy using leave-one-out cross-validation
-                accuracy = validator.leave_one_out_validation(classifier, data, new_features) * 100
-                print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+            # evaluate accuracy using leave-one-out cross-validation
+            accuracy = validator.leave_one_out_validation(classifier, data, new_features) * 100
+            print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
 
-                # update the best accuracy and best subset if the current subset performs better
-                if accuracy > best_accuracy:
-                    best_accuracy = accuracy 
-                    best_subset = new_features
+            # update the best accuracy and best subset if the current subset performs better
+            if accuracy > best_accuracy:
+                best_accuracy = accuracy 
+                best_subset = new_features
+            
+            # generate the remaining features by excluding the current feature
+            remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
 
-                # accuracy = getRand() * 100 # generate a random accuracy score (for now)
-
-                # print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
-                
-                # generate the remaining features by excluding the current feature
-                remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
-
-                # add a new node representing the updated subset of features to the queue
-                queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features))
-                
-                # if found then end
-                if len(features_tuple) == num_features:
-                    if accuracy < best_accuracy:
-                        print('\n(Warning, accuracy has decreased!)')
-                    return best_subset, best_accuracy
+            # add a new node representing the updated subset of features to the queue
+            queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features))
+            
+            # if found then end
+            if len(features_tuple) == num_features:
+                if accuracy < best_accuracy:
+                    print('\n(Warning, accuracy has decreased!)')
+                return best_subset, best_accuracy
 
     return best_subset, best_accuracy
 
@@ -185,10 +182,6 @@ def backward_selection(num_features, data, defaultrate):
                 print('\n(Warning, accuracy has decreased!)')
             break
 
-            # if rand < best_accuracy:
-                # print('\n(Warning, accuracy has decreased!)')
-            # break
-
         # checking if it was visited
         features_tuple = tuple(curr_node.featuresSubset)
         if features_tuple in visited:
@@ -198,8 +191,6 @@ def backward_selection(num_features, data, defaultrate):
         # evaluate accuracy using leave-one-out cross-validation
         accuracy = validator.leave_one_out_validation(classifier, data, curr_node.featuresSubset) * 100
         
-        # calculate the accuracy (placeholder for now)
-        # accuracy = getRand() * 100
         
         if cur_size > len(curr_node.featuresSubset):
             print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
@@ -209,6 +200,9 @@ def backward_selection(num_features, data, defaultrate):
 
         # update the best accuracy and best subset if the current subset performs better
         if accuracy > best_accuracy:
+            best_accuracy = accuracy 
+            best_subset = curr_node.featuresSubset
+        elif accuracy == best_accuracy and len(curr_node.featuresSubset) < len(best_subset):
             best_accuracy = accuracy 
             best_subset = curr_node.featuresSubset
 
