@@ -107,7 +107,7 @@ def forward_selection(num_features, data):
     # adding a node that represents the initial state (aka no features selected yet) to the queue
     queue.append(node(remainingFeatures = np.arange(1, num_features+1)))
     
-    print('Beginning search.\n')
+    print('\nBeginning search.\n')
     cur_size = 1
 
     # starting the bfs loop 
@@ -170,13 +170,13 @@ def backward_selection(num_features, data, defaultrate):
     # initialize the queue with all features selected
     queue.append(node(featuresSubset=[i for i in range(1, num_features+1)]))
     
-    print('\nBeginning search.\n')
+    print('Beginning search.\n')
 
     while queue:
         curr_node = queue.popleft()
         
         if len(curr_node.featuresSubset) == 0:
-            print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + str(defaultrate) + '.\n')
+            print('\nRunning nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
             
             if defaultrate < best_accuracy:
                 print('\n(Warning, accuracy has decreased!)')

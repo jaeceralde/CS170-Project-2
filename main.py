@@ -20,17 +20,13 @@ numAlgo = int(input())
 
 print(f'\nThis data set has ' + str(numFeatures) + ' features with ' + str(numInstances) + ' instances.\n')
 
-# initialize classifier and validator 
-classifier = Classifier()
-validator = Validator()
-
 mostCommonClass = most_common(labels)    # assuming the label is the class
 defaultrate = default(mostCommonClass[1], numInstances)
 
 
 
 if (numAlgo == 1):  # forward selection function
-    print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of ' + str(defaultrate) + '.\n')
+    print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
     
     best_subset, best_acc = forward_selection(numFeatures, dataset)
 
