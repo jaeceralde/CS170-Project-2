@@ -96,61 +96,37 @@ class Validator:
 
 
 def forward_selection(num_features, data):
-    queue = deque()
-    best_subset = []
-    best_accuracy = 0
-    visited = set()
-    
+    best_subset = [] # holder for the best feature set
+    best_accuracy = 0.0
+
     validator = Validator()
     classifier = Classifier()
 
-    # adding a node that represents the initial state (aka no features selected yet) to the queue
-    queue.append(node(remainingFeatures = np.arange(1, num_features+1)))
-    
+    num_features_loop = num_features+1
+
     print('\nBeginning search.\n')
-    cur_size = 1
 
-    # starting the bfs loop 
-    while queue:
-        curr_node = queue.popleft() # removing and retrieving the first node from the queue
+    for i in range(1, num_features_loop):
+        best_feature_acc = 0
+        curr_feature = 0
+        
+        for feature in range(1, num_features_loop):
+            # check if the features in the subset already
+            if feature not in best_subset:
+                # if its not in the subset then add it
+                current_subset = best_subset + [feature]
+                # test accuracy
+                accuracy = validator.leave_one_out_validation(classifier, data, current_subset) * 100
+                print(f'\tUsing feature(s) {{{custom_print_list(current_subset)}}} accuracy is {accuracy:.2f}%')
 
-        # iterate over the remaining features of the current node
-        for feature in curr_node.remainingFeatures:
-            
-            new_features = curr_node.featuresSubset.copy() # create a copy of the current subset of features
-            new_features.append(feature) # add the current feature to the new subset of features
-
-            # checking if it was visited
-            features_tuple = tuple(sorted(new_features))
-            if features_tuple in visited:
-                continue
-            visited.add(features_tuple)
-
-            # checking if the features have changed size so we can show whats the best accuracy so far
-            if len(features_tuple) > cur_size:
-                print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
-                cur_size = len(features_tuple)
-
-            # evaluate accuracy using leave-one-out cross-validation
-            accuracy = validator.leave_one_out_validation(classifier, data, new_features) * 100
-            print(f'\tUsing feature(s) {{{custom_print_list(new_features)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
-
-            # update the best accuracy and best subset if the current subset performs better
-            if accuracy > best_accuracy:
-                best_accuracy = accuracy 
-                best_subset = new_features
-            
-            # generate the remaining features by excluding the current feature
-            remaining_features = np.setdiff1d(curr_node.remainingFeatures, [feature])
-
-            # add a new node representing the updated subset of features to the queue
-            queue.append(node(remainingFeatures = remaining_features, featuresSubset = new_features))
-            
-            # if found then end
-            if len(features_tuple) == num_features:
-                if accuracy < best_accuracy:
-                    print('\n(Warning, accuracy has decreased!)')
-                return best_subset, best_accuracy
+                # if its the best accuracy, save it
+                if accuracy > best_feature_acc:
+                    best_feature_acc = accuracy
+                    curr_feature = feature
+        
+        best_subset.append(curr_feature) # add the best feature to the end
+        best_accuracy = best_feature_acc
+        print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy is {best_accuracy:.2f}%\n')
 
     return best_subset, best_accuracy
 
@@ -160,7 +136,7 @@ def forward_selection(num_features, data):
 def backward_selection(num_features, data, defaultrate):
     queue = deque()
     best_subset = []
-    best_accuracy = 0
+    best_accuracy = 0.0
     cur_size = num_features
     visited = set()
     
