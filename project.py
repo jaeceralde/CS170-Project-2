@@ -98,6 +98,8 @@ class Validator:
 def forward_selection(num_features, data):
     best_subset = [] # holder for the best feature set
     best_accuracy = 0.0
+    total_best_subset = []
+    total_best_accuracy = 0.0
 
     validator = Validator()
     classifier = Classifier()
@@ -128,7 +130,14 @@ def forward_selection(num_features, data):
         best_accuracy = best_feature_acc
         print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy is {best_accuracy:.2f}%\n')
 
-    return best_subset, best_accuracy
+        if total_best_accuracy < best_accuracy:
+            total_best_accuracy = best_accuracy
+            total_best_subset = best_subset.copy()
+
+    if total_best_accuracy > best_accuracy:
+        print('(Warning, accuracy has decreased!)')
+
+    return total_best_subset, total_best_accuracy
 
 
 
