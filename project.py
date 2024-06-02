@@ -130,6 +130,7 @@ def forward_selection(num_features, data):
         best_accuracy = best_feature_acc
         print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy is {best_accuracy:.2f}%\n')
 
+        # update overall best accuracy and subset if current best accuracy is better
         if total_best_accuracy < best_accuracy:
             total_best_accuracy = best_accuracy
             total_best_subset = best_subset.copy()
@@ -158,17 +159,10 @@ def backward_selection(num_features, data, defaultrate):
     # initial evaluation with all features
     initial_accuracy = validator.leave_one_out_validation(classifier, data, best_subset) * 100
 
-    # check if initial accuracy is lower than default rate
-    if initial_accuracy < best_accuracy:
-        print(f'\n(Warning, accuracy has decreased!)') # if so, print warning that accuracy has decreased
-    else:
-        # update overall best accuracy and subset if initial accuracy is better
-        overall_best_accuracy = initial_accuracy
-        overall_best_subset = best_subset.copy()
-
-    #set best accuracy to initial accuracy
+    # set best accuracy to initial accuracy
     best_accuracy = initial_accuracy
-    # print initial evaluation 
+    
+    # print initial evaluation
     print(f'\tUsing feature(s) {{{custom_print_list(best_subset)}}} accuracy is {initial_accuracy:.2f}%')
     print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy is {best_accuracy:.2f}%\n')
 
@@ -180,7 +174,12 @@ def backward_selection(num_features, data, defaultrate):
         # iterate through each feature in the current subset
         for feature in best_subset:
             subset = [f for f in best_subset if f != feature] # remove the current feature and create a new subset
-            accuracy = validator.leave_one_out_validation(classifier, data, subset) * 100 # calculate accuracy 
+
+            if not subset:  # if subset is empty, exit
+                print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
+                break
+
+            accuracy = validator.leave_one_out_validation(classifier, data, subset) * 100 # calculate accuracy
             print(f'\tUsing feature(s) {{{custom_print_list(subset)}}} accuracy is {accuracy:.2f}%') #print accuracy
 
             # update current best accuracy and feature to remove if accuracy is better
@@ -197,7 +196,8 @@ def backward_selection(num_features, data, defaultrate):
             if current_best_accuracy > overall_best_accuracy:
                 overall_best_accuracy = current_best_accuracy
                 overall_best_subset = best_subset.copy()
-            elif current_best_accuracy < overall_best_accuracy: # print warning if current best accuracy is worse than overall best accuracy
-                print(f'\n(Warning, accuracy has decreased!)')
+
+    if current_best_accuracy < overall_best_accuracy: # print warning if current best accuracy is worse than overall best accuracy
+        print(f'\n(Warning, accuracy has decreased!)')
 
     return overall_best_subset, overall_best_accuracy
