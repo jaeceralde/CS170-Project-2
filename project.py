@@ -63,7 +63,7 @@ class Classifier:
     def test(self, instance):
         # find the nearest neighbor 
         # compute the distance between a given test instance and all training instances in the dataset
-        distances = self.euclidean_distance(instance)
+        distance = [self.euclidean_distance(instance, train_instance) for train_instance in self.train_data]
         nn_index = np.argmin(distance)  # get the index from the smallest distance
         return self.train_data[nn_index, 0] # return the class label of the nearest neighbor
 
