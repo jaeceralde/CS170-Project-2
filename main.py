@@ -1,4 +1,5 @@
 import project
+import time
 from project import *
 
 print('Welcome to Feature Selection Algorithm.')
@@ -27,14 +28,11 @@ defaultrate = default(mostCommonClass[1], numInstances)
 
 if (numAlgo == 1):  # forward selection function
     print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
-    
     best_subset, best_acc = forward_selection(numFeatures, dataset)
-
     print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
 
 elif (numAlgo == 2):    # backward selection function
     best_subset, best_acc = backward_selection(numFeatures, dataset, defaultrate)
-    
     print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))

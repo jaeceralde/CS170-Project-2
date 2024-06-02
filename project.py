@@ -11,7 +11,7 @@ def load(filename):
     features = data[:, 1:]
 
     # normalize the features 
-    features = (features - np.mean(features, axis = 0) / np.std(features, axis = 0))
+    features = (features - np.mean(features, axis = 0)) / np.std(features, axis = 0)
 
     # combine the labels and normalized features 
     data = np.column_stack((labels, features))
@@ -63,7 +63,7 @@ class Classifier:
     def test(self, instance):
         # find the nearest neighbor 
         # compute the distance between a given test instance and all training instances in the dataset
-        distance = [self.euclidean_distance(instance, train_instance) for train_instance in self.train_data]
+        distances = self.euclidean_distance(instance)
         nn_index = np.argmin(distance)  # get the index from the smallest distance
         return self.train_data[nn_index, 0] # return the class label of the nearest neighbor
 
@@ -78,7 +78,7 @@ class Validator:
         # count how many are right then return correct_pred / total
         for i in range(total):
             # remove the test instance from the original dataset
-            train_data = np.delete(data, i, axis = 0)
+            train_data = np.concatenate((data[:i], data[i+1:]), axis=0)
             # select the ith instance from the original dataset to be used as the test instance 
             test_instance = data[i]
 
