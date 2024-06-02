@@ -143,59 +143,61 @@ def forward_selection(num_features, data):
 
 # same thing as the forward function but backwards 
 def backward_selection(num_features, data, defaultrate):
-    queue = deque()
-    best_subset = []
-    best_accuracy = 0.0
-    cur_size = num_features
-    visited = set()
-    
+    best_subset = list(range(1, num_features + 1))  # initialize the starting feature subset with all features
+    best_accuracy = defaultrate * 100  # initialize the best accuracy with the default rate
+    # initialize the overall best subset and accuracy with the starting subset and accuracy
+    overall_best_subset = best_subset.copy() 
+    overall_best_accuracy = best_accuracy
+
+    # create instances of Validator and Classifier
     validator = Validator()
     classifier = Classifier()
 
-    # initialize the queue with all features selected
-    queue.append(node(featuresSubset=[i for i in range(1, num_features+1)]))
-    
     print('Beginning search.\n')
 
-    while queue:
-        curr_node = queue.popleft()
-        
-        if len(curr_node.featuresSubset) == 0:
-            print('\nRunning nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
-            
-            if defaultrate < best_accuracy:
-                print('\n(Warning, accuracy has decreased!)')
-            break
+    # initial evaluation with all features
+    initial_accuracy = validator.leave_one_out_validation(classifier, data, best_subset) * 100
 
-        # checking if it was visited
-        features_tuple = tuple(curr_node.featuresSubset)
-        if features_tuple in visited:
-            continue
-        visited.add(features_tuple)
+    # check if initial accuracy is lower than default rate
+    if initial_accuracy < best_accuracy:
+        print(f'\n(Warning, accuracy has decreased!)') # if so, print warning that accuracy has decreased
+    else:
+        # update overall best accuracy and subset if initial accuracy is better
+        overall_best_accuracy = initial_accuracy
+        overall_best_subset = best_subset.copy()
 
-        # evaluate accuracy using leave-one-out cross-validation
-        accuracy = validator.leave_one_out_validation(classifier, data, curr_node.featuresSubset) * 100
-        
-        
-        if cur_size > len(curr_node.featuresSubset):
-            print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy ' + 'is {:.2f}%\n'.format(best_accuracy))
-            cur_size = len(curr_node.featuresSubset)
+    #set best accuracy to initial accuracy
+    best_accuracy = initial_accuracy
+    # print initial evaluation 
+    print(f'\tUsing feature(s) {{{custom_print_list(best_subset)}}} accuracy is {initial_accuracy:.2f}%')
+    print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy is {best_accuracy:.2f}%\n')
 
-        print(f'\tUsing feature(s) {{{custom_print_list(curr_node.featuresSubset)}}}' + ' accuracy is {:.2f}%'.format(accuracy))
+    # iterate through each feature to remove it and evaluate accuracy
+    for i in range(num_features, 0, -1):
+        current_best_accuracy = 0.0
+        feature_to_remove = -1
 
-        # update the best accuracy and best subset if the current subset performs better
-        if accuracy > best_accuracy:
-            best_accuracy = accuracy 
-            best_subset = curr_node.featuresSubset
-        elif accuracy == best_accuracy and len(curr_node.featuresSubset) < len(best_subset):
-            best_accuracy = accuracy 
-            best_subset = curr_node.featuresSubset
+        # iterate through each feature in the current subset
+        for feature in best_subset:
+            subset = [f for f in best_subset if f != feature] # remove the current feature and create a new subset
+            accuracy = validator.leave_one_out_validation(classifier, data, subset) * 100 # calculate accuracy 
+            print(f'\tUsing feature(s) {{{custom_print_list(subset)}}} accuracy is {accuracy:.2f}%') #print accuracy
 
-        # iterate over each feature and remove it from the subset
-        for feature in curr_node.featuresSubset:
-            new_features = [f for f in curr_node.featuresSubset if f != feature]
+            # update current best accuracy and feature to remove if accuracy is better
+            if accuracy > current_best_accuracy:
+                current_best_accuracy = accuracy
+                feature_to_remove = feature
 
-            # add the new subset to the queue
-            queue.append(node(featuresSubset = new_features))
+        # remove the feature that has the best accuracy
+        if feature_to_remove != -1:
+            best_subset.remove(feature_to_remove)
+            print(f'\nFeature set {{{custom_print_list(best_subset)}}} was best, accuracy is {current_best_accuracy:.2f}%\n')
 
-    return best_subset, best_accuracy
+            # update overall best accuracy and subset if current best accuracy is better
+            if current_best_accuracy > overall_best_accuracy:
+                overall_best_accuracy = current_best_accuracy
+                overall_best_subset = best_subset.copy()
+            elif current_best_accuracy < overall_best_accuracy: # print warning if current best accuracy is worse than overall best accuracy
+                print(f'\n(Warning, accuracy has decreased!)')
+
+    return overall_best_subset, overall_best_accuracy
