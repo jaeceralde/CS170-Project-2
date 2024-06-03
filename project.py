@@ -11,7 +11,6 @@ def load(filename):
     features = data[:, 1:]
 
     # normalize the features 
-    features = (features - np.mean(features, axis = 0)) / np.std(features, axis = 0)
 
     # combine the labels and normalized features 
     data = np.column_stack((labels, features))
@@ -177,8 +176,6 @@ def backward_selection(num_features, data, defaultrate):
 
             if not subset:  # if subset is empty, exit
                 print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
-                if defaultrate*100 > best_accuracy:
-                    return [], defaultrate*100
                 break
 
             accuracy = validator.leave_one_out_validation(classifier, data, subset) * 100 # calculate accuracy
