@@ -145,7 +145,7 @@ def forward_selection(num_features, data):
 # same thing as the forward function but backwards 
 def backward_selection(num_features, data, defaultrate):
     best_subset = list(range(1, num_features + 1))  # initialize the starting feature subset with all features
-    best_accuracy = defaultrate * 100  # initialize the best accuracy with the default rate
+    best_accuracy = 0  # initialize the best accuracy with the default rate
     # initialize the overall best subset and accuracy with the starting subset and accuracy
     overall_best_subset = best_subset.copy() 
     overall_best_accuracy = best_accuracy
@@ -177,6 +177,8 @@ def backward_selection(num_features, data, defaultrate):
 
             if not subset:  # if subset is empty, exit
                 print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
+                if defaultrate*100 > best_accuracy:
+                    return [], defaultrate*100
                 break
 
             accuracy = validator.leave_one_out_validation(classifier, data, subset) * 100 # calculate accuracy
