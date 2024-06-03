@@ -25,6 +25,10 @@ mostCommonClass = most_common(labels)    # assuming the label is the class
 defaultrate = default(mostCommonClass[1], numInstances)
 
 
+# Extra things that we implemented:
+# not going over repeated feature sets
+# returning the smaller sized feature set if a larger one has the same size 
+
 
 if (numAlgo == 1):  # forward selection function
     print('Running nearest neighbor with no features (default rate), using \"leaving-one-out\" evaluation, I get an accuracy of {:.2f}%'.format(defaultrate * 100))
@@ -32,7 +36,7 @@ if (numAlgo == 1):  # forward selection function
     best_subset, best_acc = forward_selection(numFeatures, dataset)
     time_end = time.time()
     time_total = time_end - time_start
-    print(time_total)
+    print(f"\nForward Selection took {time_total:.2f} seconds to run")
     print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
 
@@ -41,6 +45,6 @@ elif (numAlgo == 2):    # backward selection function
     best_subset, best_acc = backward_selection(numFeatures, dataset, defaultrate)
     time_end = time.time()
     time_total = time_end - time_start
-    print(time_total)
+    print(f"\nBackward Elimination took {time_total:.2f} seconds to run")
     print('\nFinished search!')
     print(f'\nThe best feature subset is {{{custom_print_list(best_subset)}}}' + ' which has an accuracy of {:.2f}%'.format(best_acc))
