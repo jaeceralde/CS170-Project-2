@@ -11,7 +11,7 @@ def load(filename):
     features = data[:, 1:]
 
     # normalize the features 
-
+    features = (features - np.mean(features, axis = 0)) / np.std(features, axis = 0)
     # combine the labels and normalized features 
     data = np.column_stack((labels, features))
     
